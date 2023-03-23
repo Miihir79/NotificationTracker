@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:drawable="@drawable/nav_drawer_selected_curved_bg"/>
+    <item android:drawable="@android:color/transparent" />
+</selector>

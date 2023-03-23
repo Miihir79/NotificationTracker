@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NotificationTracker</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="view_all_notifs">View All Notifs</string>
+    <string name="nav_open">open</string>
+    <string name="nav_close">close</string>
+    <string name="app_wise_notifications">App wise Notifications</string>
+</resources>

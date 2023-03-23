@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_nav_home"
+            android:title="@string/home" />
+
+        <item
+            android:id="@+id/allNotif"
+            android:icon="@drawable/ic_nav_notif"
+            android:title="@string/view_all_notifs" />
+
+        <item android:id="@+id/appBasedNotifs"
+            android:icon="@drawable/ic_nav_app_notif"
+            android:title="@string/app_wise_notifications"/>
+
+    </group>
+</menu>
