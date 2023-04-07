@@ -2,12 +2,20 @@ package com.mihir.notificationtracker.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mihir.notificationtracker.databinding.ItemAppNotifGrpBinding
 
-class AdapterAppWise(val onItemClick: ((packageName: String) -> Unit)) : RecyclerView.Adapter<AdapterAppWise.ViewHolder>() {
+class AdapterAppWise(val onItemClick: ((packageName: String) -> Unit)) : ListAdapter<String,AdapterAppWise.ViewHolder>(ItemCallback) {
 
-    private var packageNameArrayList = ArrayList<String>()
+    object ItemCallback : DiffUtil.ItemCallback<String>() {
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean =
+            oldItem == newItem
+
+        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean =
+            oldItem == newItem
+    }
 
     inner class ViewHolder(private val binding: ItemAppNotifGrpBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String) = binding.apply {
@@ -23,13 +31,29 @@ class AdapterAppWise(val onItemClick: ((packageName: String) -> Unit)) : Recycle
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(packageNameArrayList[position])
+        holder.bind(packageNameData[position])
     }
 
-    override fun getItemCount() = packageNameArrayList.size
+    var filter: CharSequence = ""
+        set(value) {
+            field = value
+            onListOrFilterChange()
+        }
 
-    fun setData(data: ArrayList<String>) {
-        packageNameArrayList = data
-        notifyDataSetChanged()
+    var packageNameData: List<String> = emptyList()
+        set(value) {
+            field = value
+            onListOrFilterChange()
+        }
+
+    private fun onListOrFilterChange() {
+        if (filter.length < 2) {
+            submitList(packageNameData)
+            return
+        }
+        val pattern = filter.toString().lowercase().trim()
+        val filteredList = packageNameData.filter { pattern in it.lowercase() }
+        submitList(filteredList)
     }
+
 }

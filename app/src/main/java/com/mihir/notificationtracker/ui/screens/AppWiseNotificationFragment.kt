@@ -6,10 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.mihir.notificationtracker.R
 import com.mihir.notificationtracker.databinding.FragmentAppWiseNotificationBinding
 import com.mihir.notificationtracker.model.NotifInfo
 import com.mihir.notificationtracker.ui.vm.ViewModel
@@ -40,6 +38,18 @@ class AppWiseNotificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvAppWiseNotifs.adapter = adapter
+        // TODO: fix search, current search is done on package name, change it to Display name/ app name
+        binding.searchAccessory.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(p0: String): Boolean {
+                adapter.filter = p0
+                return true
+            }
+
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return true
+            }
+        })
+
         observe()
     }
 
@@ -55,9 +65,13 @@ class AppWiseNotificationFragment : Fragment() {
                     myMap[it.packageName] = list
                 }
             }
-            // TODO: Handle click for each app and then open all of it's notification from myMap key
-            if (myMap.keys.size >= 1) {
-                adapter.setData(myMap.keys.toList() as ArrayList<String>)
+
+            if (myMap.keys.size > 1) {
+                adapter.packageNameData = myMap.keys.toList()
+            } else if (myMap.keys.size == 1 ) { // when only notif of one app is in db, it was map.keys throwing error thus handled separately
+                val list = arrayListOf<String>()
+                list.add(data[0].packageName)
+                adapter.packageNameData = list
             }
         }
     }

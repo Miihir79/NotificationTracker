@@ -2,11 +2,10 @@ package com.mihir.notificationtracker
 
 import android.app.Notification
 import android.content.Context
-import android.os.Build
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
-import android.util.Log
 import com.mihir.notificationtracker.database.NotificationDatabase
+import com.mihir.notificationtracker.helper.logThis
 import com.mihir.notificationtracker.model.NotifInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +23,7 @@ class NotificationInterceptor : NotificationListenerService() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-        Log.i("MIHIR_TAG", "notif listner started")
+        logThis("notif listner started")
     }
 
     // reference: https://github.com/Chagall/notification-listener-service-example
