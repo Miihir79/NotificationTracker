@@ -3,7 +3,11 @@
 <p>
 <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>  
 <img src="https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white"/>
+
+[![NotificationTracker App](https://img.shields.io/badge/NotificatinTracker✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Miihir79/NotificationTracker/releases/download/1.0.0/app-debug.apk)
+
 </p>
+
 
 An app that helps keep track of your 🔔Notifications🔔
 
@@ -61,6 +65,10 @@ Never miss a notification again with Notigication Tracker app. This app has feat
 This app uses speacial permissions like:
 - BIND_NOTIFICATION_LISTENER_SERVICE : To get data of all the incoming notifications
 - QUERY_ALL_PACKAGES : To get information like app name, icon etc of various apps present in your device
+
+### ***Download the app from here👇***
+
+[![NotificationTracker App](https://img.shields.io/badge/NotificatinTracker✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Miihir79/NotificationTracker/releases/download/1.0.0/app-debug.apk)
     
 ## How to contribute?
 ### What do you need to get started?
