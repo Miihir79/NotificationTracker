@@ -1,24 +1,28 @@
-# **NotificationTracker**
+# **NotificationTracker 🔔**
 
 <p>
 <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>  
 <img src="https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white"/>
 </p>
 
-An app that helps keep track of your notifications
+An app that helps keep track of your 🔔Notifications🔔
+
+### Idea behind the app
+
+#### Ever swiped away a notification mindlessly ❌ and then never found out what it was❓ Well, that's how I ended up creating this app 💡.
+
 
 ### About the app
-Ever swiped away a notification mindlessly and then never found out what it was? Well, that's how I ended up creating this app.
 
 Never miss a notification again with Notigication Tracker app. This app has features like:
 
-- List of 10 most recent notifications on home screen
+- List of 10 most recent notifications on home screen 🔟
 - List of all notification
 - List of app wise notification
-- Search feature to find that missed notification!
-- Get the message if even if the sender deletes it
+- Search feature🔎 to help you find that missed notification!
+- Get the text message if even if the sender deletes it 🔕 as long as you've recieved it as a notification
 
-### Screenshots of the app
+### 📸 Screenshots of the app
 <table>
   <tr>
     <td>Home Page<img src="https://user-images.githubusercontent.com/66465511/230773107-306e83f8-24dc-4d31-8dd2-ea6acfcc1117.jpg" width="350">
