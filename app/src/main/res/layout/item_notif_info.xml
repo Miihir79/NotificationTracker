@@ -15,12 +15,12 @@
 
         <TextView
             android:id="@+id/tvPackageName"
+            getAppNameFromPackageName="@{notifInfoItem.packageName}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_4sdp"
             android:hint="Package Name"
-            getAppNameFromPackageName="@{notifInfoItem.packageName}"
             android:textSize="@dimen/_16ssp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,13 +55,13 @@
 
         <TextView
             android:id="@+id/tvNotifTime"
+            displayTime="@{notifInfoItem.time}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_4sdp"
-            displayTime="@{notifInfoItem.time}"
-            android:textSize="@dimen/_12ssp"
             android:hint="Time"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNotifBody" />
 
@@ -70,6 +70,7 @@
             getImageFromPackageName="@{notifInfoItem.packageName}"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="@+id/tvNotifTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvPackageName"

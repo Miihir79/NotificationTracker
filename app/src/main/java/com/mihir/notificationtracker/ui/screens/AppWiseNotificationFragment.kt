@@ -39,7 +39,7 @@ class AppWiseNotificationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvAppWiseNotifs.adapter = adapter
         // TODO: fix search, current search is done on package name, change it to Display name/ app name
-        binding.searchAccessory.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchApps.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(p0: String): Boolean {
                 adapter.filter = p0
                 return true
@@ -68,7 +68,7 @@ class AppWiseNotificationFragment : Fragment() {
 
             if (myMap.keys.size > 1) {
                 adapter.packageNameData = myMap.keys.toList()
-            } else if (myMap.keys.size == 1 ) { // when only notif of one app is in db, it was map.keys throwing error thus handled separately
+            } else if (myMap.keys.size == 1) { // when only notif of one app is in db, it was map.keys throwing error thus handled separately
                 val list = arrayListOf<String>()
                 list.add(data[0].packageName)
                 adapter.packageNameData = list

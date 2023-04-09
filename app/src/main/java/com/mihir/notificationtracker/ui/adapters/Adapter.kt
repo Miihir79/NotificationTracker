@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mihir.notificationtracker.databinding.ItemNotifInfoBinding
 import com.mihir.notificationtracker.model.NotifInfo
 
-class Adapter: RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     private var notifInfoArrayList = ArrayList<NotifInfo>()
 
-    inner class ViewHolder(private val binding: ItemNotifInfoBinding):RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemNotifInfoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: NotifInfo) = binding.apply {
             binding.notifInfoItem = item
         }
@@ -26,7 +26,7 @@ class Adapter: RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     override fun getItemCount() = notifInfoArrayList.size
 
-    fun setData(data:ArrayList<NotifInfo>){
+    fun setData(data: ArrayList<NotifInfo>) {
         notifInfoArrayList = data
         notifyDataSetChanged()
     }

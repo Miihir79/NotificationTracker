@@ -7,7 +7,7 @@
     tools:context=".ui.screens.AppWiseNotificationFragment">
 
     <SearchView
-        android:id="@+id/searchAccessory"
+        android:id="@+id/searchApps"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_32sdp"
         android:layout_marginHorizontal="@dimen/_8sdp"
@@ -27,6 +27,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchAccessory" />
+        app:layout_constraintTop_toBottomOf="@+id/searchApps" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
