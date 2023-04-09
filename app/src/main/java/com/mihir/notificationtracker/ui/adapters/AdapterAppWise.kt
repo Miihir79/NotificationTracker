@@ -1,13 +1,18 @@
 package com.mihir.notificationtracker.ui.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mihir.notificationtracker.databinding.ItemAppNotifGrpBinding
+import com.mihir.notificationtracker.helper.getDisplayNameFromPackageName
 
-class AdapterAppWise(val onItemClick: ((packageName: String) -> Unit)) : ListAdapter<String,AdapterAppWise.ViewHolder>(ItemCallback) {
+class AdapterAppWise(val onItemClick: ((packageName: String) -> Unit)) :
+    ListAdapter<String, AdapterAppWise.ViewHolder>(ItemCallback) {
+
+    private lateinit var context: Context
 
     object ItemCallback : DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean =
@@ -27,6 +32,7 @@ class AdapterAppWise(val onItemClick: ((packageName: String) -> Unit)) : ListAda
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        context = parent.context
         return ViewHolder(ItemAppNotifGrpBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
@@ -52,7 +58,7 @@ class AdapterAppWise(val onItemClick: ((packageName: String) -> Unit)) : ListAda
             return
         }
         val pattern = filter.toString().lowercase().trim()
-        val filteredList = packageNameData.filter { pattern in it.lowercase() }
+        val filteredList = packageNameData.filter { pattern in it.getDisplayNameFromPackageName(context, it).lowercase() }
         submitList(filteredList)
     }
 

@@ -36,3 +36,17 @@ fun Context.showToastMessage(message: String) {
 fun Any.logThis(message: String, tag: String = "MIHIR_TAG_NOTIF") {
     Log.i(tag, message)
 }
+
+/**
+ * This function returns the app's display name from it's package name
+ */
+fun String.getDisplayNameFromPackageName(context: Context, packageName: String) : String {
+    try {
+        val info = context.packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
+        val appName = context.packageManager.getApplicationLabel(info)
+        return appName.toString()
+    } catch (e: PackageManager.NameNotFoundException) {
+        e.printStackTrace()
+    }
+    return ""
+}

@@ -4,9 +4,9 @@ import android.content.pm.PackageManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.mihir.notificationtracker.helper.getDisplayNameFromPackageName
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 @BindingAdapter("displayTime")
 fun TextView.displayTime(time: Long) {
@@ -26,11 +26,5 @@ fun ImageView.getImageFromPackageName(packageName: String) {
 
 @BindingAdapter("getAppNameFromPackageName")
 fun TextView.getAppNameFromPackageName(packageName: String) {
-    try {
-        val info = context.packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
-        val appName = context.packageManager.getApplicationLabel(info)
-        this.text = appName
-    } catch (e: PackageManager.NameNotFoundException) {
-        e.printStackTrace()
-    }
+    this.text = packageName.getDisplayNameFromPackageName(context,packageName)
 }
