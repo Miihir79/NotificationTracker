@@ -48,6 +48,19 @@ Never miss a notification again with Notigication Tracker app. This app has feat
         ├── adapter         # RecyclerView Adapter
         ├── screens         # UI of the app
         └── vm              # ViewModel
+        
+## Built Using 🛠
+- Kotlin
+- RoomDB
+- MVVM
+- DataBinding and ViewBinding
+- LiveData
+- NotificationListenerService
+
+## ⚠️ Warning ⚠️
+This app uses speacial permissions like:
+- BIND_NOTIFICATION_LISTENER_SERVICE : To get data of all the incoming notifications
+- QUERY_ALL_PACKAGES : To get information like app name, icon etc of various apps present in your device
     
 ## How to contribute?
 ### What do you need to get started?
