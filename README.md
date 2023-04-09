@@ -18,6 +18,18 @@ Never miss a notification again with Notigication Tracker app. This app has feat
 - Search feature to find that missed notification!
 - Get the message if even if the sender deletes it
 
+### Screenshots of the app
+<table>
+  <tr>
+    <td>Home Page<img src="https://user-images.githubusercontent.com/66465511/230773107-306e83f8-24dc-4d31-8dd2-ea6acfcc1117.jpg" width="350">
+    <td>All Notifs<img src="https://user-images.githubusercontent.com/66465511/230773113-2ef63c2d-57fc-4873-8a11-41132c838adf.jpg" width="350">
+    <td>App wise Notifs<img src="https://user-images.githubusercontent.com/66465511/230773116-4b82d32b-98ca-4511-84b0-acbc1f01af49.jpg" width="350">
+  <tr>
+    <td>Search for app<img src="https://user-images.githubusercontent.com/66465511/230773120-aec7fbbc-1c0e-4fe7-835e-414b29561f63.jpg" width="350">
+    <td>List of app notif<img src="https://user-images.githubusercontent.com/66465511/230773117-bb1e11c4-27cd-4a59-8fa1-a253f4cc8b60.jpg" width="350">
+    <td>Search app notifs<img src="https://user-images.githubusercontent.com/66465511/230773118-da68c928-a060-4d2d-bfea-7319e6743ade.jpg" width="350">
+</table>
+
 ### Package Structure
     
     com.mihir.notificationtracker    # Root Package
