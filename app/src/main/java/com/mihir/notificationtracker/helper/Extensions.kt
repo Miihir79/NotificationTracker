@@ -50,9 +50,8 @@ fun String.getDisplayNameFromPackageName(context: Context): String {
         val appName = context.packageManager.getApplicationLabel(info)
         return appName.toString()
     } catch (e: PackageManager.NameNotFoundException) {
-        e.printStackTrace()
+        return "Uninstalled App"
     }
-    return ""
 }
 
 fun String.getAppIconAsBitmapFromPackageName(context: Context): Bitmap? {

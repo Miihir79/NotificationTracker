@@ -37,7 +37,7 @@ class AdapterAppWise(val onItemClick: ((packageName: String) -> Unit)) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(packageNameData[position])
+        holder.bind(currentList[position])
     }
 
     var filter: CharSequence = ""

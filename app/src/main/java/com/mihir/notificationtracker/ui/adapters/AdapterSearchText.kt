@@ -52,7 +52,7 @@ class AdapterSearchText : ListAdapter<NotifInfo, AdapterSearchText.ViewHolder>(I
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(notifInfoData[position])
+        holder.bind(currentList[position])
     }
 
 }

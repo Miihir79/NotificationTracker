@@ -39,7 +39,6 @@ class AppWiseNotificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvAppWiseNotifs.adapter = adapter
-        // TODO: fix search, current search is done on package name, change it to Display name/ app name
         binding.searchApps.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(p0: String): Boolean {
                 adapter.filter = p0
