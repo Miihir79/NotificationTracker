@@ -18,13 +18,13 @@ An app that helps keep track of your 🔔Notifications🔔
 
 ### About the app
 
-Never miss a notification again with Notigication Tracker app. This app has features like:
+Never miss a notification again with Notification Tracker app. This app has features like:
 
 - List of 10 most recent notifications on home screen 🔟
 - List of all notification
 - List of app wise notification
 - Search feature🔎 to help you find that missed notification!
-- Get the text message if even if the sender deletes it 🔕 as long as you've recieved it as a notification
+- Get the text message if even if the sender deletes it 🔕 as long as you've received  it as a notification
 
 ### 📸 Screenshots of the app
 <table>
@@ -62,7 +62,7 @@ Never miss a notification again with Notigication Tracker app. This app has feat
 - NotificationListenerService
 
 ## ⚠️ Warning ⚠️
-This app uses speacial permissions like:
+This app uses special permissions like:
 - BIND_NOTIFICATION_LISTENER_SERVICE : To get data of all the incoming notifications
 - QUERY_ALL_PACKAGES : To get information like app name, icon etc of various apps present in your device
 
