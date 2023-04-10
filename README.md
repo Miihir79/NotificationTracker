@@ -23,6 +23,7 @@ Never miss a notification again with Notification Tracker app. This app has feat
 - List of 10 most recent notifications on home screen 🔟
 - List of all notification
 - List of app wise notification
+- Notification Count
 - Search feature🔎 to help you find that missed notification!
 - Get the text message if even if the sender deletes it 🔕 as long as you've received  it as a notification
 
@@ -34,8 +35,8 @@ Never miss a notification again with Notification Tracker app. This app has feat
     <td>App wise Notifs<img src="https://user-images.githubusercontent.com/66465511/230773116-4b82d32b-98ca-4511-84b0-acbc1f01af49.jpg" width="350">
   <tr>
     <td>Search for app<img src="https://user-images.githubusercontent.com/66465511/230773120-aec7fbbc-1c0e-4fe7-835e-414b29561f63.jpg" width="350">
-    <td>List of app notif<img src="https://user-images.githubusercontent.com/66465511/230773117-bb1e11c4-27cd-4a59-8fa1-a253f4cc8b60.jpg" width="350">
-    <td>Search app notifs<img src="https://user-images.githubusercontent.com/66465511/230773118-da68c928-a060-4d2d-bfea-7319e6743ade.jpg" width="350">
+    <td>List of app notif<img src="https://user-images.githubusercontent.com/66465511/230971032-afba0495-3dbc-43ff-a07c-50b16bdbe941.jpg" width="350">
+    <td>Search app notifs<img src="https://user-images.githubusercontent.com/66465511/230971041-f37b502b-f11d-4ab7-9767-2783a7109079.jpg" width="350">
 </table>
 
 ### Package Structure
