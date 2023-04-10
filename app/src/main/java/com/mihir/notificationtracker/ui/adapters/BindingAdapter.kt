@@ -26,5 +26,5 @@ fun ImageView.getImageFromPackageName(packageName: String) {
 
 @BindingAdapter("getAppNameFromPackageName")
 fun TextView.getAppNameFromPackageName(packageName: String) {
-    this.text = packageName.getDisplayNameFromPackageName(context, packageName)
+    this.text = packageName.getDisplayNameFromPackageName(context)
 }

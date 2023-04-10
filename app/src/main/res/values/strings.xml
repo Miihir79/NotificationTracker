@@ -7,4 +7,11 @@
     <string name="nav_open">open</string>
     <string name="nav_close">close</string>
     <string name="app_wise_notifications">App wise Notifications</string>
+    <string name="total_notifs">Total Notifs:</string>
+    <string name="today_s_notifs">Today\'s Notifs:</string>
+    <string name="uninstalled_app_name">Uninstalled App Name</string>
+    <string name="title_of_the_notification">Title of the notification</string>
+    <string name="body_of_the_notification">Body of the notification</string>
+    <string name="time">Time</string>
+    <string name="app_icon">App Icon</string>
 </resources>

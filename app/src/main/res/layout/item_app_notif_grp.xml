@@ -5,6 +5,7 @@
     android:layout_margin="@dimen/_8sdp">
 
     <data>
+
         <variable
             name="packageName"
             type="String" />
@@ -20,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
-            android:hint="Package Name"
+            android:hint="@string/uninstalled_app_name"
             android:textSize="@dimen/_16ssp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,10 +34,11 @@
             getImageFromPackageName="@{packageName}"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
+            android:contentDescription="@string/app_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/ic_nav_app_notif" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

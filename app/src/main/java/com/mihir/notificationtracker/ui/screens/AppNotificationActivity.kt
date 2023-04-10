@@ -10,8 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.mihir.notificationtracker.R
 import com.mihir.notificationtracker.databinding.ActivityAppNotificationBinding
-import com.mihir.notificationtracker.model.NotifInfo
-import com.mihir.notificationtracker.ui.adapters.Adapter
 import com.mihir.notificationtracker.ui.adapters.AdapterSearchText
 import com.mihir.notificationtracker.ui.vm.AppWiseViewModel
 import kotlinx.coroutines.Dispatchers
@@ -40,6 +38,8 @@ class AppNotificationActivity : AppCompatActivity() {
         if (packageName != null) {
             lifecycleScope.launch(Dispatchers.IO) {
                 viewModel.getAppNotifs(packageName)
+                viewModel.getAppNotifCount(packageName)
+                viewModel.getAppNotifCountToday(packageName)
             }
         }
 
@@ -62,6 +62,14 @@ class AppNotificationActivity : AppCompatActivity() {
     private fun observe() {
         viewModel.observeAppData.observe(this) {
             adapter.notifInfoData = it
+        }
+
+        viewModel.todayNotificationCount.observe(this) {
+            binding.chipToday.text = getString(R.string.today_s_notifs) + it.toString()
+        }
+
+        viewModel.totalNotificationCount.observe(this) {
+            binding.chipTotal.text = getString(R.string.total_notifs) + it.toString()
         }
     }
 

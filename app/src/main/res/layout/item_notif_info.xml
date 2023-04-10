@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="notifInfoItem"
             type="com.mihir.notificationtracker.model.NotifInfo" />
@@ -20,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_4sdp"
-            android:hint="Package Name"
+            android:hint="@string/uninstalled_app_name"
             android:textSize="@dimen/_16ssp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_4sdp"
-            android:hint="Title of the notificaiton"
+            android:hint="@string/title_of_the_notification"
             android:text="@{notifInfoItem.heading}"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_8sdp"
-            android:hint="Body of the notificaiton"
+            android:hint="@string/body_of_the_notification"
             android:text="@{notifInfoItem.bodyText}"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_4sdp"
-            android:hint="Time"
+            android:hint="@string/time"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNotifBody" />
@@ -71,9 +72,10 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_8sdp"
+            android:contentDescription="@string/app_icon"
             app:layout_constraintBottom_toBottomOf="@+id/tvNotifTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvPackageName"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/ic_nav_app_notif" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

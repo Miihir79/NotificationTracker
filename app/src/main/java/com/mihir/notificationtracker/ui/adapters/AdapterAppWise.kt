@@ -16,7 +16,7 @@ class AdapterAppWise(val onItemClick: ((packageName: String) -> Unit)) :
 
     object ItemCallback : DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean =
-            oldItem == newItem
+            oldItem === newItem
 
         override fun areContentsTheSame(oldItem: String, newItem: String): Boolean =
             oldItem == newItem
@@ -58,7 +58,7 @@ class AdapterAppWise(val onItemClick: ((packageName: String) -> Unit)) :
             return
         }
         val pattern = filter.toString().lowercase().trim()
-        val filteredList = packageNameData.filter { pattern in it.getDisplayNameFromPackageName(context, it).lowercase() }
+        val filteredList = packageNameData.filter { pattern in it.getDisplayNameFromPackageName(context).lowercase() }
         submitList(filteredList)
     }
 

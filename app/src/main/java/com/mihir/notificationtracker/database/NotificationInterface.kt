@@ -22,4 +22,10 @@ interface NotificationInterface {
     @Query("SELECT * FROM notif_data WHERE packageName = :packageName ORDER BY time DESC")
     fun getAppNotification(packageName: String): List<NotifInfo>
 
+    @Query("SELECT COUNT(id) FROM notif_data WHERE packageName = :packageName")
+    fun getAppNotifCount(packageName: String): Int
+
+    @Query("SELECT COUNT(id) FROM notif_data WHERE packageName = :packageName AND time > :todayStartTimeStamp")
+    fun getAppNotifCountToday(packageName: String, todayStartTimeStamp: Long): Int
+
 }

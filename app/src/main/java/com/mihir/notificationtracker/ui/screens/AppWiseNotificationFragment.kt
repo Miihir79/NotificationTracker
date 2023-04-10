@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import com.mihir.notificationtracker.databinding.FragmentAppWiseNotificationBinding
+import com.mihir.notificationtracker.helper.getDisplayNameFromPackageName
 import com.mihir.notificationtracker.model.NotifInfo
 import com.mihir.notificationtracker.ui.vm.ViewModel
 import com.mihir.notificationtracker.ui.adapters.AdapterAppWise
@@ -42,6 +43,9 @@ class AppWiseNotificationFragment : Fragment() {
         binding.searchApps.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(p0: String): Boolean {
                 adapter.filter = p0
+                if (p0 == "") {
+                    binding.rvAppWiseNotifs.scrollToPosition(0)
+                }
                 return true
             }
 
@@ -56,7 +60,10 @@ class AppWiseNotificationFragment : Fragment() {
     private fun observe() {
         viewModel.getAppWiseNotifs.observe(viewLifecycleOwner) { data ->
             val myMap = mutableMapOf<String, ArrayList<NotifInfo>>()
-            data.forEach {
+            val listDisplay = data.sortedWith(
+                compareBy(String.CASE_INSENSITIVE_ORDER) { it.packageName.getDisplayNameFromPackageName(requireContext()) }
+            )
+            listDisplay.forEach {
                 if (myMap.containsKey(it.packageName)) {
                     myMap[it.packageName]?.add(it)
                 } else {
@@ -65,7 +72,7 @@ class AppWiseNotificationFragment : Fragment() {
                     myMap[it.packageName] = list
                 }
             }
-
+            binding.progressBar.visibility = View.GONE
             if (myMap.keys.size > 1) {
                 adapter.packageNameData = myMap.keys.toList()
             } else if (myMap.keys.size == 1) { // when only notif of one app is in db, it was map.keys throwing error thus handled separately
