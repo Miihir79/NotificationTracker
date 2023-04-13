@@ -15,6 +15,7 @@ An app that helps keep track of your 🔔Notifications🔔
 
 #### Ever swiped away a notification mindlessly ❌ and then never found out what it was❓ Well, that's how I ended up creating this app 💡.
 
+<img src="https://user-images.githubusercontent.com/66465511/231824133-c93954c1-fa79-4767-98c6-bf535fa19629.png" width="500">
 
 ### About the app
 
