@@ -1,3 +1,5 @@
+![Google Pixel 4 XL Presentation (3)](https://github.com/Miihir79/NotificationTracker/assets/66465511/7e9c8318-3964-48b3-b302-42db4ce32074)
+
 # **NotificationTracker 🔔**
 
 <p>
