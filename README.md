@@ -72,7 +72,7 @@ This app uses special permissions like:
 
 ### ***Download the app from here👇***
 
-[![NotificationTracker App](https://img.shields.io/badge/NotificatinTracker✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Miihir79/NotificationTracker/releases/download/1.0.1/app-debug.apk)
+[![NotificationTracker App](https://img.shields.io/badge/NotificatinTracker✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Miihir79/NotificationTracker/releases/download/1.0.2/NotificationTrackingApp-1.0.2-debug-25-05.apk)
     
 ## How to contribute?
 ### What do you need to get started?
