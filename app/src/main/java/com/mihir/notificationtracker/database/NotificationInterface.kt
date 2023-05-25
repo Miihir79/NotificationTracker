@@ -19,6 +19,9 @@ interface NotificationInterface {
     @Query("SELECT * FROM notif_data ORDER BY packageName ASC")
     fun getNotifSortedByPackageName(): LiveData<List<NotifInfo>>
 
+    @Query("SELECT packageName FROM notif_data ORDER BY packageName ASC")
+    fun getPackageNamesSorted(): LiveData<List<String>>
+
     @Query("SELECT * FROM notif_data WHERE packageName = :packageName ORDER BY time DESC")
     fun getAppNotification(packageName: String): List<NotifInfo>
 

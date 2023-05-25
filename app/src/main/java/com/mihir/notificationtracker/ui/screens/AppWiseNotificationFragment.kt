@@ -57,28 +57,15 @@ class AppWiseNotificationFragment : Fragment() {
     }
 
     private fun observe() {
-        viewModel.getAppWiseNotifs.observe(viewLifecycleOwner) { data ->
-            val myMap = mutableMapOf<String, ArrayList<NotifInfo>>()
-            val listDisplay = data.sortedWith(
-                compareBy(String.CASE_INSENSITIVE_ORDER) { it.packageName.getDisplayNameFromPackageName(requireContext()) }
-            )
-            listDisplay.forEach {
-                if (myMap.containsKey(it.packageName)) {
-                    myMap[it.packageName]?.add(it)
-                } else {
-                    val list = ArrayList<NotifInfo>()
-                    list.add(it)
-                    myMap[it.packageName] = list
+        viewModel.getAllPackageNames.observe(viewLifecycleOwner) { data ->
+            val listOfUnique =  mutableListOf<String>()
+            data.forEach {
+                if ((it in listOfUnique).not()) {
+                    listOfUnique.add(it)
                 }
             }
             binding.progressBar.visibility = View.GONE
-            if (myMap.keys.size > 1) {
-                adapter.packageNameData = myMap.keys.toList()
-            } else if (myMap.keys.size == 1) { // when only notif of one app is in db, it was map.keys throwing error thus handled separately
-                val list = arrayListOf<String>()
-                list.add(data[0].packageName)
-                adapter.packageNameData = list
-            }
+            adapter.packageNameData = listOfUnique
         }
     }
 

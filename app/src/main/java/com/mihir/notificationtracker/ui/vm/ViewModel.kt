@@ -12,7 +12,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     var dao = AppObjectController.appDatabase.notifDao()
     val readAllNotification: LiveData<List<NotifInfo>> = dao.getAllNotifs()
     val readATopNotifications: LiveData<List<NotifInfo>> = dao.getLastFewNotifs()
-    val getAppWiseNotifs: LiveData<List<NotifInfo>> = dao.getNotifSortedByPackageName()
+    val getAllPackageNames: LiveData<List<String>> = dao.getPackageNamesSorted()
 
     fun addNotification(notification: NotifInfo) {
         viewModelScope.launch {
