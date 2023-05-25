@@ -13,7 +13,7 @@ android {
         minSdk 21
         targetSdk 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,6 +34,17 @@ android {
     buildFeatures{
         viewBinding true
         dataBinding true
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def versionName = variant.versionName
+            def versionCode = variant.versionCode
+            def flavorName = variant.flavorName // e. g. free
+            def buildType = variant.buildType // e. g. debug
+            def variantName = variant.name // e. g. freeDebug
+            output.outputFileName = "NotificationTrackingApp-${versionName}-${buildType.name}-${new Date().format('dd-MM')}.apk"
+        }
     }
 }
 
