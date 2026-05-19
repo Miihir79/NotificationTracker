@@ -14,4 +14,19 @@
     <string name="body_of_the_notification">Body of the notification</string>
     <string name="time">Time</string>
     <string name="app_icon">App Icon</string>
+    <string name="analytics">Analytics</string>
+    <string name="hourly_trends">Hourly Trends</string>
+    <string name="top_apps">Top Apps</string>
+    <string name="summary_stats">Summary Stats</string>
+    <string name="total_notifications">Total</string>
+    <string name="daily_average">Daily Avg</string>
+    <string name="peak_hour">Peak Hour</string>
+    <string name="all_apps">All Apps</string>
+    <string name="select_app">Select App</string>
+    <string name="select_date">Select Date</string>
+    <string name="reset">Reset</string>
+    <string name="notification_listener_title">Permission Required</string>
+    <string name="notification_listener_message">To track notifications, this app needs access to your notification listener settings. Please enable NotificationTracker in the next screen.</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="cancel">Cancel</string>
 </resources>

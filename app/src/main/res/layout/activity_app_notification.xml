@@ -1,58 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".ui.screens.AppNotificationActivity">
 
-    <SearchView
-        android:id="@+id/searchInApp"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_32sdp"
-        android:layout_marginHorizontal="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:background="@drawable/search_bg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        app:titleTextColor="@color/black" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipToday" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        <SearchView
+            android:id="@+id/searchInApp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/search_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chipTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/total_notifs"
-        app:chipBackgroundColor="@color/default_vibrant_light"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchInApp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipToday" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chipToday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/today_s_notifs"
-        app:chipBackgroundColor="@color/default_vibrant_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/searchInApp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_notifs"
+            app:chipBackgroundColor="@color/default_vibrant_light"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchInApp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/today_s_notifs"
+            app:chipBackgroundColor="@color/default_vibrant_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/searchInApp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

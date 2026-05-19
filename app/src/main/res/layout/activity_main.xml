@@ -8,14 +8,28 @@
     android:orientation="vertical"
     tools:context=".ui.screens.MainActivity">
 
-    <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:titleTextColor="@color/black" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
+
+    </LinearLayout>
 
     <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
     <com.google.android.material.navigation.NavigationView

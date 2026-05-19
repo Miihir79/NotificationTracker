@@ -18,5 +18,9 @@
             android:icon="@drawable/ic_nav_app_notif"
             android:title="@string/app_wise_notifications"/>
 
+        <item android:id="@+id/analyticsFragment"
+            android:icon="@drawable/ic_nav_analytics"
+            android:title="@string/analytics"/>
+
     </group>
 </menu>

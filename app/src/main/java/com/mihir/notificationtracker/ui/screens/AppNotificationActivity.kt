@@ -1,6 +1,5 @@
 package com.mihir.notificationtracker.ui.screens
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.SearchView
@@ -23,17 +22,11 @@ class AppNotificationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.setBackgroundDrawable(
-            ColorDrawable(
-                ContextCompat.getColor(
-                    this,
-                    R.color.white
-                )
-            )
-        )
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Notifications of this app"
-        setContentView(binding.root)
         val packageName = intent.getStringExtra("packageName")
         if (packageName != null) {
             lifecycleScope.launch(Dispatchers.IO) {

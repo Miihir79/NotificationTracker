@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FAFAFA"
+        app:elevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp">
+
+            <!-- Pill Style App Selector -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilAppSelector"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintEnabled="false"
+                    app:startIconDrawable="@drawable/ic_nav_app_notif">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/atvAppSelector"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:paddingVertical="12dp"
+                        android:text="@string/all_apps"
+                        android:textSize="14sp"
+                        android:background="@android:color/transparent" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingHorizontal="12dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="4dp"
+            android:paddingBottom="24dp">
+
+            <!-- Summary Cards Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingVertical="8dp"
+                android:clipToPadding="false"
+                android:layout_marginBottom="24dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginEnd="12dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingVertical="20dp"
+                        android:paddingHorizontal="8dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_notifications"
+                            android:textSize="12sp"
+                            android:textColor="#757575"/>
+                        <TextView
+                            android:id="@+id/tvTotalCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginEnd="12dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingVertical="20dp"
+                        android:paddingHorizontal="8dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/daily_average"
+                            android:textSize="12sp"
+                            android:textColor="#757575"/>
+                        <TextView
+                            android:id="@+id/tvDailyAvg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingVertical="20dp"
+                        android:paddingHorizontal="8dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/peak_hour"
+                            android:textSize="12sp"
+                            android:textColor="#757575"/>
+                        <TextView
+                            android:id="@+id/tvPeakHour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="--"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Hourly Trends Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="24dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hourly_trends"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="20dp"/>
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/hourlyChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Day Selector Slider -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="24dp">
+
+                <ImageButton
+                    android:id="@+id/btnPrevDay"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_chevron_left"
+                    android:contentDescription="@string/app_icon" />
+
+                <TextView
+                    android:id="@+id/tvSelectedDay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Tuesday, 19 May"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <ImageButton
+                    android:id="@+id/btnNextDay"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_chevron_right"
+                    android:contentDescription="@string/app_icon" />
+            </LinearLayout>
+
+            <!-- Top Apps Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardTopApps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="24dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp">
+                        <TextView
+                            android:id="@+id/tvTopAppsTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/top_apps"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnResetHour"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/reset"
+                            android:textSize="12sp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            app:iconSize="16dp"/>
+                    </RelativeLayout>
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/appChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="320dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

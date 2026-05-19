@@ -22,4 +22,10 @@
         android:label="App Wise Notifications"
         tools:layout="@layout/fragment_app_wise_notification" />
 
+    <fragment
+        android:id="@+id/analyticsFragment"
+        android:name="com.mihir.notificationtracker.ui.screens.AnalyticsFragment"
+        android:label="Analytics"
+        tools:layout="@layout/fragment_analytics" />
+
 </navigation>
