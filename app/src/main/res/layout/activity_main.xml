@@ -32,14 +32,35 @@
     </LinearLayout>
 
     <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/white"
+        android:clickable="true"
         android:fitsSystemWindows="true"
-        app:itemBackground="@drawable/drawer_selected_item"
-        app:menu="@menu/nav_menu" />
+        android:focusable="true"
+        android:orientation="vertical">
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:itemBackground="@drawable/drawer_selected_item"
+            app:menu="@menu/nav_menu" />
+
+        <TextView
+            android:id="@+id/tvAppVersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Version 1.0.0"
+            android:textColor="#757575"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

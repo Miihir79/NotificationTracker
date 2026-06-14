@@ -6,7 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.TextView
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.animation.Easing
@@ -23,6 +27,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
+data class AppDisplayInfo(val appName: String, val packageName: String?) {
+    override fun toString(): String = appName
+}
+
 class AnalyticsFragment : Fragment() {
 
     private val viewModel by lazy { ViewModelProvider(this)[ViewModel::class.java] }
@@ -30,6 +38,7 @@ class AnalyticsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val dayFormat = SimpleDateFormat("EEEE, dd MMM", Locale.getDefault())
+    private val appInfoCache = mutableMapOf<String, Pair<String, android.graphics.drawable.Drawable?>>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,23 +55,77 @@ class AnalyticsFragment : Fragment() {
         observeData()
     }
 
+    private fun getAppName(packageName: String): String {
+        return appInfoCache[packageName]?.first ?: run {
+            val pm = try { requireContext().packageManager } catch (e: Exception) { null } ?: return packageName
+            try {
+                val info = pm.getApplicationInfo(packageName, 0)
+                val label = pm.getApplicationLabel(info).toString()
+                val icon = pm.getApplicationIcon(info)
+                appInfoCache[packageName] = Pair(label, icon)
+                label
+            } catch (e: Exception) {
+                packageName.split(".").lastOrNull() ?: packageName
+            }
+        }
+    }
+
+    private fun getAppIcon(packageName: String): android.graphics.drawable.Drawable? {
+        return appInfoCache[packageName]?.second ?: run {
+            val pm = try { requireContext().packageManager } catch (e: Exception) { null } ?: return null
+            try {
+                val info = pm.getApplicationInfo(packageName, 0)
+                var icon = pm.getApplicationIcon(info)
+                
+                // Resize icon if it's too large for the selector
+                val size = (24 * resources.displayMetrics.density).toInt()
+                if (icon.intrinsicWidth > size || icon.intrinsicHeight > size) {
+                    val bitmap = android.graphics.Bitmap.createBitmap(size, size, android.graphics.Bitmap.Config.ARGB_8888)
+                    val canvas = android.graphics.Canvas(bitmap)
+                    icon.setBounds(0, 0, canvas.width, canvas.height)
+                    icon.draw(canvas)
+                    icon = android.graphics.drawable.BitmapDrawable(resources, bitmap)
+                }
+
+                val label = pm.getApplicationLabel(info).toString()
+                appInfoCache[packageName] = Pair(label, icon)
+                icon
+            } catch (e: Exception) {
+                null
+            }
+        }
+    }
+
     private fun setupFilters() {
         // App Selector
         viewModel.allUniquePackageNames.observe(viewLifecycleOwner) { packages ->
-            val appList = ArrayList<String>()
-            appList.add(getString(R.string.all_apps))
-            appList.addAll(packages)
+            val appList = ArrayList<AppDisplayInfo>()
+            appList.add(AppDisplayInfo(getString(R.string.all_apps), null))
             
-            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, appList)
+            packages.forEach { pkg ->
+                appList.add(AppDisplayInfo(getAppName(pkg), pkg))
+            }
+            
+            val adapter = AppSelectorAdapter(requireContext(), appList)
             binding.atvAppSelector.setAdapter(adapter)
+            
             // Ensure the text matches current selection
             val currentPkg = viewModel.selectedPackageName.value
-            binding.atvAppSelector.setText(currentPkg ?: getString(R.string.all_apps), false)
+            if (currentPkg == null) {
+                binding.atvAppSelector.setText(getString(R.string.all_apps), false)
+            } else {
+                binding.atvAppSelector.setText(getAppName(currentPkg), false)
+            }
         }
 
         binding.atvAppSelector.setOnItemClickListener { parent, _, position, _ ->
-            val selected = parent.getItemAtPosition(position) as String
-            viewModel.setSelectedPackage(selected)
+            val selected = parent.getItemAtPosition(position) as AppDisplayInfo
+            viewModel.setSelectedPackage(selected.packageName)
+            
+            // Clear focus and hide keyboard
+            binding.atvAppSelector.clearFocus()
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(binding.atvAppSelector.windowToken, 0)
         }
 
         // Day Selector Slider
@@ -124,6 +187,24 @@ class AnalyticsFragment : Fragment() {
         
         binding.btnNextDay.isEnabled = !isToday
         binding.btnNextDay.alpha = if (isToday) 0.3f else 1.0f
+    }
+
+    private fun updateMainSelectorIcon(packageName: String) {
+        val icon = getAppIcon(packageName)
+        if (icon != null) {
+            val size = (24 * resources.displayMetrics.density).toInt()
+            val bitmap = android.graphics.Bitmap.createBitmap(size, size, android.graphics.Bitmap.Config.ARGB_8888)
+            val canvas = android.graphics.Canvas(bitmap)
+            icon.setBounds(0, 0, size, size)
+            icon.draw(canvas)
+            val sizedIcon = android.graphics.drawable.BitmapDrawable(resources, bitmap)
+            
+            binding.tilAppSelector.setStartIconDrawable(sizedIcon)
+            binding.tilAppSelector.setStartIconTintList(null)
+        } else {
+            binding.tilAppSelector.setStartIconDrawable(R.drawable.ic_nav_app_notif)
+            binding.tilAppSelector.setStartIconTintList(null)
+        }
     }
 
     private fun setupCharts() {
@@ -209,6 +290,11 @@ class AnalyticsFragment : Fragment() {
         
         viewModel.selectedPackageName.observe(viewLifecycleOwner) { pkg ->
             binding.cardTopApps.visibility = if (pkg == null) View.VISIBLE else View.GONE
+            if (pkg == null) {
+                binding.tilAppSelector.setStartIconDrawable(R.drawable.ic_nav_app_notif)
+            } else {
+                updateMainSelectorIcon(pkg)
+            }
         }
 
         viewModel.selectedHour.observe(viewLifecycleOwner) { hour ->
@@ -287,7 +373,7 @@ class AnalyticsFragment : Fragment() {
         }
         val entries = ArrayList<PieEntry>()
         stats.forEach { stat ->
-            val label = stat.packageName.split(".").lastOrNull() ?: stat.packageName
+            val label = getAppName(stat.packageName)
             entries.add(PieEntry(stat.count.toFloat(), label))
         }
 
@@ -313,5 +399,30 @@ class AnalyticsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    inner class AppSelectorAdapter(context: Context, appList: List<AppDisplayInfo>) :
+        ArrayAdapter<AppDisplayInfo>(context, R.layout.item_app_selector, appList) {
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_app_selector, parent, false)
+            val info = getItem(position)
+            
+            val ivIcon = view.findViewById<ImageView>(R.id.ivAppIcon)
+            val tvName = view.findViewById<TextView>(R.id.tvAppName)
+            
+            tvName.text = info?.appName
+            if (info?.packageName == null) {
+                ivIcon.setImageResource(R.drawable.ic_nav_app_notif)
+            } else {
+                val icon = getAppIcon(info.packageName)
+                if (icon != null) {
+                    ivIcon.setImageDrawable(icon)
+                } else {
+                    ivIcon.setImageResource(R.drawable.ic_nav_app_notif)
+                }
+            }
+            return view
+        }
     }
 }

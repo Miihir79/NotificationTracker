@@ -25,6 +25,8 @@
     <string name="select_app">Select App</string>
     <string name="select_date">Select Date</string>
     <string name="reset">Reset</string>
+    <string name="search_app">Search app</string>
+    <string name="search_notification_content">Search Notification Content</string>
     <string name="notification_listener_title">Permission Required</string>
     <string name="notification_listener_message">To track notifications, this app needs access to your notification listener settings. Please enable NotificationTracker in the next screen.</string>
     <string name="open_settings">Open Settings</string>

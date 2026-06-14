@@ -13,6 +13,11 @@
         android:layout_marginHorizontal="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:background="@drawable/search_bg"
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/search_app"
+        android:focusable="true"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

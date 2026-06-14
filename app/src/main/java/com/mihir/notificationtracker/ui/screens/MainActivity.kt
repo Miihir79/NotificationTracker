@@ -56,7 +56,18 @@ class MainActivity : AppCompatActivity() {
         }
         startService(Intent(AppObjectController.applicationContext, NotificationInterceptor::class.java))
         setupDrawerLayout()
+        setAppVersion()
 
+    }
+
+    private fun setAppVersion() {
+        try {
+            val pInfo = packageManager.getPackageInfo(packageName, 0)
+            val version = pInfo.versionName
+            binding.tvAppVersion.text = "Version $version"
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -92,6 +103,11 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.navView.setupWithNavController(navController)
+
+        // Fix: Manually close drawer when navigating, as the custom layout wrapper may interfere with auto-closing
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            binding.drawerLayout.closeDrawers()
+        }
 
         NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
 

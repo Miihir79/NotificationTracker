@@ -55,7 +55,7 @@ interface NotificationInterface {
     @Query("SELECT packageName, COUNT(id) as count FROM notif_data WHERE (time >= :startTime AND time <= :endTime) AND (strftime('%H', time/1000, 'unixepoch', 'localtime') = :hour) GROUP BY packageName ORDER BY count DESC LIMIT 5")
     fun getTopAppsForHour(startTime: Long, endTime: Long, hour: String): LiveData<List<AppUsageStats>>
 
-    @Query("SELECT DISTINCT packageName FROM notif_data ORDER BY packageName ASC")
+    @Query("SELECT packageName FROM notif_data GROUP BY packageName ORDER BY COUNT(id) DESC")
     fun getAllUniquePackageNames(): LiveData<List<String>>
 
 }

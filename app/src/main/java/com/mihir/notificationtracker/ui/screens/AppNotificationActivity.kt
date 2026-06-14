@@ -2,6 +2,7 @@ package com.mihir.notificationtracker.ui.screens
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -34,6 +35,16 @@ class AppNotificationActivity : AppCompatActivity() {
                 viewModel.getAppNotifCount(packageName)
                 viewModel.getAppNotifCountToday(packageName)
             }
+        }
+
+        binding.searchInApp.setOnClickListener {
+            binding.searchInApp.isIconified = false
+        }
+        
+        // Ensure internal parts are also clickable
+        val searchPlateId = binding.searchInApp.context.resources.getIdentifier("android:id/search_plate", null, null)
+        binding.searchInApp.findViewById<View>(searchPlateId)?.setOnClickListener {
+            binding.searchInApp.isIconified = false
         }
 
         binding.searchInApp.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

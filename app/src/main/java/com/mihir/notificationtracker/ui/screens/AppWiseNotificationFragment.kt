@@ -39,6 +39,17 @@ class AppWiseNotificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvAppWiseNotifs.adapter = adapter
+        
+        binding.searchApps.setOnClickListener {
+            binding.searchApps.isIconified = false
+        }
+        
+        // Ensure internal parts are also clickable
+        val searchPlateId = binding.searchApps.context.resources.getIdentifier("android:id/search_plate", null, null)
+        binding.searchApps.findViewById<View>(searchPlateId)?.setOnClickListener {
+            binding.searchApps.isIconified = false
+        }
+
         binding.searchApps.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(p0: String): Boolean {
                 adapter.filter = p0
