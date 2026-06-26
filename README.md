@@ -6,7 +6,10 @@
 <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>  
 <img src="https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white"/>
 
-[![NotificationTracker App](https://img.shields.io/badge/NotificatinTracker✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Miihir79/NotificationTracker#%EF%B8%8F-warning-%EF%B8%8F)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://playbadges.pavi2410.com/badge/full?id=com.mihir.notificationtracker&theme=dark">
+  <img alt="PlayBadges Card Folo" src="https://playbadges.pavi2410.com/badge/full?id=com.mihir.notificationtracker&theme=dark">
+</picture>
 
 </p>
 
