@@ -22,5 +22,20 @@
             android:icon="@drawable/ic_nav_analytics"
             android:title="@string/analytics"/>
 
+        <item
+            android:id="@+id/importantMessagesFragment"
+            android:icon="@drawable/ic_nav_notif"
+            android:title="@string/important_messages" />
+
+        <item
+            android:id="@+id/manageContactsFragment"
+            android:icon="@drawable/ic_nav_app_notif"
+            android:title="@string/manage_contacts" />
+
+        <item
+            android:id="@+id/reminderSettingsFragment"
+            android:icon="@drawable/ic_nav_analytics"
+            android:title="@string/reminder_settings" />
+
     </group>
 </menu>

@@ -28,11 +28,19 @@ class NotificationInterceptor : NotificationListenerService() {
 
     // reference: https://github.com/Chagall/notification-listener-service-example
     override fun onNotificationPosted(sbn: StatusBarNotification?) {
+        val notification = sbn?.notification ?: return
+        
+        // Only track if it has a title and text (most notifications we care about)
+        val title = notification.extras?.getCharSequence(Notification.EXTRA_TITLE)?.toString() ?: ""
+        val text = notification.extras?.getCharSequence(Notification.EXTRA_TEXT)?.toString() ?: ""
+        
+        if (title.isEmpty() && text.isEmpty()) return
+
         val notifInfo = NotifInfo(0,
-            sbn?.packageName ?: "",
-            sbn?.notification?.extras?.getString(Notification.EXTRA_TITLE) ?: "",
-            sbn?.notification?.extras?.getString(Notification.EXTRA_TEXT) ?: "",
-            sbn?.postTime ?: 0
+            sbn.packageName ?: "",
+            title,
+            text,
+            sbn.postTime
         )
         scope.launch {
             dao.addNotifInfo(notifInfo)

@@ -17,9 +17,9 @@ class AppWiseViewModel(application: Application) : AndroidViewModel(application)
     val totalNotificationCount = MutableLiveData<Int>()
     val todayNotificationCount = MutableLiveData<Int>()
 
-    fun getAppNotifs(packageName: String) {
+    fun getAppNotifs(packageName: String, contactName: String? = null, startTime: Long? = null, endTime: Long? = null) {
         viewModelScope.launch(Dispatchers.IO) {
-            val res = dao.getAppNotification(packageName)
+            val res = dao.getNotificationsFiltered(packageName, contactName, startTime, endTime)
             observeAppData.postValue(res)
         }
     }

@@ -28,4 +28,19 @@
         android:label="Analytics"
         tools:layout="@layout/fragment_analytics" />
 
+    <fragment
+        android:id="@+id/importantMessagesFragment"
+        android:name="com.mihir.notificationtracker.ui.screens.ImportantMessagesFragment"
+        android:label="@string/important_messages" />
+
+    <fragment
+        android:id="@+id/manageContactsFragment"
+        android:name="com.mihir.notificationtracker.ui.screens.ManageContactsFragment"
+        android:label="@string/manage_contacts" />
+
+    <fragment
+        android:id="@+id/reminderSettingsFragment"
+        android:name="com.mihir.notificationtracker.ui.screens.ReminderSettingsFragment"
+        android:label="@string/reminder_settings" />
+
 </navigation>

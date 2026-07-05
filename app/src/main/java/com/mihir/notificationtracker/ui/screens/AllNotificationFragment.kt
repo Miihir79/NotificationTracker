@@ -35,7 +35,14 @@ class AllNotificationFragment : Fragment() {
 
     private fun observe() {
         viewModel.readAllNotification.observe(viewLifecycleOwner) {
-            adapter.setData(it as ArrayList<NotifInfo>)
+            if (it.isNullOrEmpty()) {
+                binding.tvNoData.visibility = View.VISIBLE
+                binding.rvNotification.visibility = View.GONE
+            } else {
+                binding.tvNoData.visibility = View.GONE
+                binding.rvNotification.visibility = View.VISIBLE
+                adapter.setData(it as ArrayList<NotifInfo>)
+            }
         }
     }
 

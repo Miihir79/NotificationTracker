@@ -3,6 +3,7 @@ package com.mihir.notificationtracker.ui.vm
 import android.app.Application
 import androidx.lifecycle.*
 import com.mihir.notificationtracker.helper.AppObjectController
+import com.mihir.notificationtracker.model.ImportantContact
 import com.mihir.notificationtracker.model.NotifInfo
 import kotlinx.coroutines.launch
 import java.util.*
@@ -43,12 +44,52 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     val totalNotifCount: LiveData<Int> = dao.getTotalNotificationCount()
     val firstNotifTime: LiveData<Long?> = dao.getFirstNotificationTime()
 
+    // Important Contacts & Notifications
+    val importantContacts: LiveData<List<ImportantContact>> = dao.getAllImportantContacts()
+    
+    fun getImportantContactsByCategory(category: String): LiveData<List<ImportantContact>> = 
+        dao.getImportantContactsByCategory(category)
+
+    val importantNotifications: LiveData<List<NotifInfo>> = dao.getNotificationsFromImportantContacts()
+
+    fun getImportantNotificationsByCategory(category: String): LiveData<List<NotifInfo>> =
+        dao.getNotificationsFromImportantContactsByCategory(category)
+
+    val uniquePackageNames: LiveData<List<String>> = dao.getUniquePackageNamesSorted()
+
+    fun addImportantContact(name: String, packageName: String, category: String) {
+        viewModelScope.launch {
+            dao.insertImportantContact(ImportantContact(0, name, packageName, category))
+        }
+    }
+
+    fun removeImportantContact(contact: ImportantContact) {
+        viewModelScope.launch {
+            dao.deleteImportantContact(contact)
+        }
+    }
+
+    fun getUniqueContacts(packageName: String): LiveData<List<String>> = dao.getUniqueContactsFromApp(packageName)
+
     fun setSelectedPackage(packageName: String?) {
         _selectedPackageName.value = if (packageName == "All Apps") null else packageName
     }
 
     fun setTimeRange(start: Long, end: Long) {
         _timeRange.value = Pair(start, end)
+    }
+
+    fun clearAllNotifications() {
+        viewModelScope.launch {
+            dao.clearAllNotifications()
+        }
+    }
+
+    fun deleteOldNotifications(days: Int) {
+        val cutoff = System.currentTimeMillis() - (days * 24 * 60 * 60 * 1000L)
+        viewModelScope.launch {
+            dao.deleteNotificationsOlderThan(cutoff)
+        }
     }
 
     fun setSelectedHour(hour: Int?) {

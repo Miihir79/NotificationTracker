@@ -1,15 +1,23 @@
 package com.mihir.notificationtracker.ui.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mihir.notificationtracker.databinding.ItemNotifInfoBinding
+import com.mihir.notificationtracker.helper.AppObjectController
 import com.mihir.notificationtracker.helper.getDisplayNameFromPackageName
 import com.mihir.notificationtracker.model.NotifInfo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AdapterSearchText : ListAdapter<NotifInfo, AdapterSearchText.ViewHolder>(ItemCallback) {
+
+    private val dao = AppObjectController.appDatabase.notifDao()
 
     object ItemCallback : DiffUtil.ItemCallback<NotifInfo>() {
         override fun areItemsTheSame(oldItem: NotifInfo, newItem: NotifInfo): Boolean =
@@ -44,6 +52,18 @@ class AdapterSearchText : ListAdapter<NotifInfo, AdapterSearchText.ViewHolder>(I
     inner class ViewHolder(private val binding: ItemNotifInfoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: NotifInfo) = binding.apply {
             binding.notifInfoItem = item
+            val context = binding.root.context
+            
+            // Check if contact is important
+            val badge = binding.root.findViewById<View>(context.resources.getIdentifier("ivImportantBadge", "id", context.packageName))
+            if (badge != null) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val important = dao.getImportantContact(item.heading, item.packageName)
+                    withContext(Dispatchers.Main) {
+                        badge.visibility = if (important != null) View.VISIBLE else View.GONE
+                    }
+                }
+            }
         }
     }
 

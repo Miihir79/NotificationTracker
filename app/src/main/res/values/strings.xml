@@ -29,4 +29,19 @@
     <string name="notification_listener_message">To track notifications, this app needs access to your notification listener settings. Please enable NotificationTracker in the next screen.</string>
     <string name="open_settings">Open Settings</string>
     <string name="cancel">Cancel</string>
+
+    <!-- Important Messages Feature -->
+    <string name="important_messages">Important Messages</string>
+    <string name="manage_contacts">Manage Contacts</string>
+    <string name="reminder_settings">Reminder Settings</string>
+    <string name="business">Business</string>
+    <string name="personal">Personal</string>
+    <string name="mark_important">Mark Important</string>
+    <string name="remove_important">Remove Important</string>
+    <string name="select_category">Select Category</string>
+    <string name="reminder_time_business">Business Reminder Time</string>
+    <string name="reminder_time_personal">Personal Reminder Time</string>
+    <string name="no_important_messages">No important messages yet.</string>
+    <string name="no_contacts_found">No contacts found for this app.</string>
+    <string name="no_notifications_found">No notifications found matching your search.</string>
 </resources>
